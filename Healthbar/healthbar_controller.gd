@@ -6,10 +6,10 @@ extends MeshInstance3D
 
 ## 1. SETUP:
 # Add this "healthbar" MeshInstance3D into an object and connect it in export/onready, then call setup_healthbar remotely
-## Example: healthbar.setup_healthbar(0, enemy_hp_max, enemy_hp_max)
+## Example: healthbar.setup_healthbar(enemy_hp_max, enemy_hp_max)
 
 ## 1.5 SETUP LOCALLY:
-# If you'd prefer to setup locally by using the min/max values in this script, turn ON the bool "setup_in_ready"
+# If you'd prefer to setup locally by using the max values in this script, turn ON the bool "setup_in_ready"
 
 ## 2. TAKING DAMAGE
 # When taking damage, call update_healthbar with the new value.
