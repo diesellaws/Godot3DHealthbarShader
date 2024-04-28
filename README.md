@@ -1,4 +1,4 @@
-# Godot 3D Healthbar Shader
+# Godot 4 3D Healthbar Shader
 A 3D Healthbar Shader with recent damage delay, built for Godot 4 - no viewports needed! 
 ---
 When creating healthbars I had trouble finding good references for a basic shader-based 3D healthbar without needing viewports. So I built one, and decided to make it public! 
