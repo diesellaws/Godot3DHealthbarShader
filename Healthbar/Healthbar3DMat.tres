@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cqyu2wskcjnk8"]
+
+[ext_resource type="Shader" path="res://Healthbar/healthbar.gdshader" id="1_qluqf"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_qluqf")
+shader_parameter/health_progress = 1.0
+shader_parameter/damage_progress = 1.0
+shader_parameter/health_color = Color(1, 0.7, 0, 1)
+shader_parameter/damage_color = Color(0.83, 0, 0.13, 1)
+shader_parameter/background_color = Color(0, 0, 0, 1)
+shader_parameter/border_thickness = 0.05
+shader_parameter/bar_size = Vector2(0.5, 0.11)

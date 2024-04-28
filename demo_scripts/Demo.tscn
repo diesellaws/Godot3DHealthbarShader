@@ -1,0 +1,108 @@
+[gd_scene load_steps=12 format=3 uid="uid://b13ddkhp818do"]
+
+[ext_resource type="Script" path="res://demo_scripts/DemoEnemiesHealthbarController.gd" id="1_yxcan"]
+[ext_resource type="PackedScene" uid="uid://dgibvlna8y1wv" path="res://Healthbar/Healthbar3D.tscn" id="2_8a8d0"]
+[ext_resource type="Shader" path="res://Healthbar/healthbar.gdshader" id="3_by00j"]
+
+[sub_resource type="Environment" id="Environment_b3cr2"]
+background_mode = 1
+background_color = Color(0.215686, 0.270588, 0.419608, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ajjil"]
+diffuse_mode = 3
+specular_mode = 1
+albedo_color = Color(0.839216, 0.839216, 0.839216, 1)
+roughness = 0.15
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_qbwm0"]
+material = SubResource("StandardMaterial3D_ajjil")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mt3nm"]
+render_priority = 0
+shader = ExtResource("3_by00j")
+shader_parameter/health_progress = 0.55
+shader_parameter/damage_progress = 0.773
+shader_parameter/health_color = Color(1, 0.7, 0, 1)
+shader_parameter/damage_color = Color(0.83, 0, 0.13, 1)
+shader_parameter/background_color = Color(0, 0, 0, 1)
+shader_parameter/border_thickness = 0.05
+shader_parameter/bar_size = Vector2(0.5, 0.11)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bk74f"]
+render_priority = 0
+shader = ExtResource("3_by00j")
+shader_parameter/health_progress = 0.375
+shader_parameter/damage_progress = 1.0
+shader_parameter/health_color = Color(0, 0.419608, 0.137255, 1)
+shader_parameter/damage_color = Color(0.14902, 0.839216, 0.215686, 1)
+shader_parameter/background_color = Color(0.14902, 0.839216, 0.215686, 1)
+shader_parameter/border_thickness = 0.05
+shader_parameter/bar_size = Vector2(0.62, 0.14)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ng4xq"]
+size = Vector2(1.925, 0.865)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y7smn"]
+render_priority = 0
+shader = ExtResource("3_by00j")
+shader_parameter/health_progress = 0.425
+shader_parameter/damage_progress = 0.777
+shader_parameter/health_color = Color(0.545098, 0.2, 1, 0.858824)
+shader_parameter/damage_color = Color(0.145098, 0, 0.380392, 0.92549)
+shader_parameter/background_color = Color(0, 0, 0, 0.556863)
+shader_parameter/border_thickness = 0.05
+shader_parameter/bar_size = Vector2(0.58, 0.123)
+
+[sub_resource type="QuadMesh" id="QuadMesh_baebk"]
+size = Vector2(1.65, 0.345)
+
+[node name="DemoScene" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_b3cr2")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.899806, -0.301932, 0.314937, 0.0335121, 0.767552, 0.64011, -0.435, -0.565421, 0.700767, 1.057, 2.863, 1.591)
+visible = false
+fov = 83.0
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.121869, -0.970857, 0.206362, 0, 0.207912, 0.978148, -0.992546, -0.119206, 0.0253381, 0, 0, 0)
+
+[node name="Enemies" type="Node3D" parent="." node_paths=PackedStringArray("healthbar1", "healthbar2", "healthbar3")]
+script = ExtResource("1_yxcan")
+healthbar1 = NodePath("Enemy1/1Healthbar3DMeshInstance3D")
+healthbar2 = NodePath("Enemy2/2Healthbar3DMeshInstance3D")
+healthbar3 = NodePath("Enemy3/3Healthbar3DMeshInstance3D")
+
+[node name="Enemy1" type="MeshInstance3D" parent="Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.735, 1, 0.235)
+mesh = SubResource("CapsuleMesh_qbwm0")
+skeleton = NodePath("../..")
+
+[node name="1Healthbar3DMeshInstance3D" parent="Enemies/Enemy1" instance=ExtResource("2_8a8d0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37, 0)
+material_override = SubResource("ShaderMaterial_mt3nm")
+hide_healthbar_at_zero_health = false
+
+[node name="Enemy2" type="MeshInstance3D" parent="Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.65704, 1, -1.51439)
+mesh = SubResource("CapsuleMesh_qbwm0")
+skeleton = NodePath("../..")
+
+[node name="2Healthbar3DMeshInstance3D" parent="Enemies/Enemy2" instance=ExtResource("2_8a8d0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.98, 0)
+material_override = SubResource("ShaderMaterial_bk74f")
+mesh = SubResource("QuadMesh_ng4xq")
+hide_healthbar_at_full_health = false
+hide_healthbar_at_zero_health = false
+
+[node name="Enemy3" type="MeshInstance3D" parent="Enemies"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.442, 1, -4.362)
+mesh = SubResource("CapsuleMesh_qbwm0")
+skeleton = NodePath("../..")
+
+[node name="3Healthbar3DMeshInstance3D" parent="Enemies/Enemy3" instance=ExtResource("2_8a8d0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.687, 0.356)
+material_override = SubResource("ShaderMaterial_y7smn")
+mesh = SubResource("QuadMesh_baebk")

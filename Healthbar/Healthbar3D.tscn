@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://dgibvlna8y1wv"]
+
+[ext_resource type="Shader" path="res://Healthbar/healthbar.gdshader" id="1_v44yo"]
+[ext_resource type="Script" path="res://Healthbar/healthbar_controller.gd" id="2_k33ay"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_issnl"]
+render_priority = 0
+shader = ExtResource("1_v44yo")
+shader_parameter/health_progress = 0.55
+shader_parameter/damage_progress = 0.773
+shader_parameter/health_color = Color(1, 0.7, 0, 1)
+shader_parameter/damage_color = Color(0.83, 0, 0.13, 1)
+shader_parameter/background_color = Color(0, 0, 0, 1)
+shader_parameter/border_thickness = 0.05
+shader_parameter/bar_size = Vector2(0.5, 0.11)
+
+[sub_resource type="QuadMesh" id="QuadMesh_pps48"]
+size = Vector2(1.665, 0.22)
+
+[node name="Healthbar3DMeshInstance3D" type="MeshInstance3D"]
+material_override = SubResource("ShaderMaterial_issnl")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_pps48")
+script = ExtResource("2_k33ay")
