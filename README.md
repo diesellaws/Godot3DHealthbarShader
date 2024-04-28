@@ -31,3 +31,6 @@ To make the damage delay take longer before kicking in, or slower to trickle dow
 
 ### DEPTH IN 3D
 The shader itself has depth_test_disabled. If you'd prefer to have your healthbars hidden by 3D objects based on position, remove that in render_mode.
+
+#### PERSONAL AND COMMERCIAL USE
+Go for it! No need to credit me or ask for permission. Donate on Itch.io if this saved you some time! Just don't resell.
